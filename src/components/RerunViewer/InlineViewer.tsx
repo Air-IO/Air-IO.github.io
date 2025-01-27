@@ -63,7 +63,7 @@ const RerunViewerInline = ({ title, rrd_file, width = '100%', height, fallback_v
         </div>
         <NoSSR>
           <MobileFallback fallback={fallback_elem}>
-            <WebViewer rrd={rrd_file} width={width} height={height} />
+            <WebViewer rrd={rrd_file} width={width} height={height} hide_welcome_screen/>
           </MobileFallback>
         </NoSSR>
       </div>

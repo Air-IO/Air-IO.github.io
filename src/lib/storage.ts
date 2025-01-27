@@ -21,7 +21,7 @@ export function getFromSessionStorage(key: string): string | null {
 }
 
 export function useDarkMode(): ['light' | 'dark', () => void] {
-  const [darkMode, setDarkMode] = useState<'light' | 'dark'>('light');
+  const [darkMode, setDarkMode] = useState<'light' | 'dark'>('dark');
 
   useEffect(() => {
     // Fetch the dark mode value from local storage on component mount

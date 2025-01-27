@@ -14,6 +14,11 @@ import RerunViewerInline from '@/components/RerunViewer/InlineViewer';
 import RerunViewerPopup from '@/components/RerunViewer/RerunViewer';
 import ExternalSwitch from '@/components/Switch';
 
+import BlackBirdGif from '~/images/blackbird_caption.gif';
+import EuRoCGif from '~/images/euroc_caption.gif';
+import PegasusGif from '~/images/pegasus_caption.gif';
+import SystemFig from '~/images/system_transparentbg.png';
+
 
 export default function HomePage() {
   const [mode, toggleMode] = useDarkMode();
@@ -38,11 +43,12 @@ export default function HomePage() {
           <ExternalSwitch state={mode === "light"} switch_state={toggleMode} />
         </div>
         <div className='layout z-20 relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
-          <h1 className='mt-4 text-5xl'>Air-IO: Learning Inertial Odometry for Drone</h1>
+          <h1 className='mt-4 text-5xl'>Air-IO: Learning <span className={clsx([hlTextColor])}>I</span>nertial <span className={clsx([hlTextColor])}>O</span>dometry for Drone</h1>
           <div className='container py-6'>
             <span className='text-lg font-semibold'>
               Yuheng Qiu<span className="align-super text-xs leading-none">*1</span>, 
               Can Xu<span className="align-super text-xs leading-none">*1</span>, 
+              Yutian Chen<span className="align-super text-xs leading-none">1</span>,
               Shibo Zhao<span className="align-super text-xs leading-none">1</span>, 
               Junyi Geng<span className="align-super text-xs leading-none">2</span> and 
               Sebastian Scherer<span className="align-super text-xs leading-none">1</span>
@@ -53,14 +59,11 @@ export default function HomePage() {
             </span>
           </div>
           <div className="container flex flex-row items-center space-x-8 justify-center text-lg">
-            <ArrowLink className='mt-6' href='https://github.com/MAC-VO/MAC-VO' variant={mode} size='large'>
+            <ArrowLink className='mt-6' href='https://github.com/Air-IO/Air-IO' variant={mode} size='large'>
               GitHub Repo
             </ArrowLink>
             <ArrowLink className='mt-6' href='https://arxiv.org/abs/2409.09479' variant={mode} size='large'>
               arXiv Page
-            </ArrowLink>
-            <ArrowLink className='mt-6' href='https://mac-vo.github.io/wiki/' variant={mode} size='large'>
-              Documentation
             </ArrowLink>
           </div>
         </div>
@@ -77,7 +80,7 @@ export default function HomePage() {
           className="absolute w-auto min-w-full min-h-full max-w-none z-0"
         >
           <source
-            src="/video/SLAM_on_Moon_with_cov.mp4"
+            src="/video/AirIO_HeroVideo.mov"
             type="video/mp4"
           />
           Your browser does not support the video tag.
@@ -88,83 +91,87 @@ export default function HomePage() {
         <div className='layout py-12'>
           <h2 className='text-center pb-4'>Abstract</h2>
           <p className='text-pretty'>
-            While quadrotors are increasingly popular due to their agility and versatility, a key challenge is state estimation under size, weight, power, and cost (SWAP-C) constraints. Inertial odometry (IO) with lightweight and inexpensive sensors Inertial Measurement Units (IMUs) is ideal for this purpose. However, the noise and bias of IMU cause the accumulation of large drift. Existing methods either rely on motion prior, which is not applicable for the highly dynamic and nonlinear nature of quadrotor motion, or require additional sensors or control inputs, limiting their practicality. This paper explores effective representations for learning-based IO in quadrotor motion and proposes AirIO, a method that relies solely on raw IMU data. Through rigorous Lipschitz analysis, we identify that body representation is more effective than global representation in encoding attitude information for agile maneuvering. AirIO explicitly encodes attitude information and predicts velocity using body representation. We further integrate an Extended Kalman Filter (EKF) to fuse IMU pre-integration with the learning-based model for robust odometry estimation.
-            Our experiments show that AirIO outperforms state-of-the-art methods, achieving an 81.53% improvement in simulated data and a 60% improvement in real-world data, all without the need for extra sensors.
+          Inertial odometry (IO) using only Inertial Measurement Units (IMUs) offers a lightweight and cost-effective solution for Unmanned Aerial Vehicle (UAV) applications, yet existing learning-based IO models often fail to generalize to UAVs due to the highly dynamic and non-linear-flight patterns that differ from pedestrian motion. 
+          In this work, we identify that the conventional practice of transforming raw IMU data to global coordinates undermines the observability of critical kinematic information in UAVs. By preserving the body-frame representation, our method achieves substantial performance improvements, with a 66.7% average increase in accuracy across three datasets. Furthermore, explicitly encoding attitude information into the motion network results in an additional 23.8% improvement over prior results. Combined with a data-driven IMU correction model (AirIMU) and an uncertainty-aware Extended Kalman Filter (EKF), our approach ensures robust state estimation under aggressive UAV maneuvers without relying on external sensors or control inputs. Notably, our method also demonstrates strong generalizability to unseen data not included in the training set, underscoring its potential for real-world UAV applications.
           </p>
 
-          <h2 className='pt-4 pb-2'>Video</h2>
-          <div className='rounded-xl mb-8 h-96 w-96 text-center align-middle bg-slate-200'>
-            Placeholder for Video.
-          </div>
+          <h2 className='pt-4 pb-2'>Introduction</h2>
+          <video
+            autoPlay
+            muted
+            controls
+            className="mx-auto z-0 rounded-lg"
+          >
+          <source
+            src="/video/1_AirIO_introduction.mov"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
         </div>
       </section>
 
       <section className={clsx(secondaryBgColor, textColor)}>
         <div className='layout py-12'>
-          <h2 className='pb-4'>Results</h2>
-          <div className='layout py-4'>
-            <p><span className='mt-2 font-light'>Interactive 3D Demo, drag for viewport rotation and scroll to zoom in/out</span></p>
-            <p><span className='mt-2 font-bold text-primary-600'>Loading a demo may take several seconds, depending on your network condition.</span></p>
-            <RerunViewerInline
-              title="TartanAir Abandon Factory 1"
-              rrd_file="/rerun/TartanAir1_abf000.rrd"
-              fallback_video='/video/Rotate_TartanAir1.mp4'
-              height='75vh'
-            />
-          </div>
-
-          <hr />
-          <h4 className='py-4'>More Interactive 3D Demos</h4>
-          <p className='pb-4'>
-            We present some additional maps and trajectories reconstructed by the MAC-VO using default configuration (without fine-tuning).
-            Click to open interactive 3D demo.
+          <h2>Results</h2>
+          <p className='py-4 text-lg'>
+            Without external sensors or control information, AirIO achieves <span className='text-primary-500'>up to a 86.6% performance boost</span> over SOTA methods
           </p>
+          <video autoPlay muted controls loop className="mx-auto z-0 rounded-lg">
+            <source
+              src="/video/blackbird_for_web.mov"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
 
-          <RerunViewerPopup
-            title="TartanAirv2, Test Trajectory H002"
-            rrd_file="/rerun/TartanAir2_H002.rrd"
-          />
-
-          &nbsp;
-
-          <RerunViewerPopup
-            title="EuRoC, Trajectory V102"
-            rrd_file="/rerun/EuRoC_V102.rrd"
-          />
-
-          &nbsp;
-
-          <RerunViewerPopup
-            title="KITTI, Trajectory 07"
-            rrd_file="https://mac-vo.github.io/rerun/KITTI_K07.rrd"
+          <h3 className='py-6'>Interactive Demo</h3>
+          <p className='italic'>Demo may take several seconds to load, depending on your network connection status.</p>
+          <RerunViewerInline
+            title='AirIO on EuRoC MH04'
+            rrd_file='/rerun/euroc_mh04.rrd'
+            height='70vh'
           />
         </div>
       </section>
 
       <section className={clsx(bgColor, textColor)}>
-        <div className='layout py-12'>
+        <div className='layout pt-12'>
           <h2 className='pb-4'>Methods</h2>
-          <h3 className='pt-4'>Placeholder Here</h3>
-          {/* <Figure
-            img_src="/images/Methods.png"
-            caption="MAC-VO System pipeline. First, we use a shared matching network to estimate the depth, flow, and corresponding uncertainty. Secondly, we employ the learned uncertainty to filter out unreliable features. Lastly, we optimize the pose with the metrics-aware covariance model."
-            isDark={mode === "dark"}
-            idx={1}
-          />
+          <p className='py-4 text-lg'>
+          We identify the commonly used global-coordinate approach is suboptimal for UAVs due to their dynamic nature. Two simple steps to achieve significant gains: 
+          <ol className='text-xl list-decimal ml-12 pt-2'>
+            <li className='pt-2 text-primary-500'>Predicting velocity using body-coordiante frame representation.</li>
+            <li className='pt-2 text-primary-500'>Explicitly encoding UAV attitude information.</li>
+          </ol>
+          </p>
+        </div>
+        <div className='flex'>
+            <Figure img_src={BlackBirdGif.src} caption="Blackbird" isDark={mode === 'dark'} idx={1}/>
+            <Figure img_src={EuRoCGif.src} caption="EuRoC" isDark={mode === 'dark'} idx={2}/>
+            <Figure img_src={PegasusGif.src} caption="Pegasus" isDark={mode === 'dark'} idx={3}/>
+        </div>
+        <div className='layout py-12'>
+          <video autoPlay muted controls loop className="mx-auto z-0 rounded-lg">
+            <source
+              src="/video/2_AirIO_insights.mov"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
 
-          <h3 className='pt-4'>Metrics-Aware Spatial Covariance</h3>
+      <section className={clsx(secondaryBgColor, textColor)}>
+        <div className='layout py-12'>
+          <h2>System Pipeline</h2>
           <Figure
-            img_src="/images/SpatialCovariance.png"
-            caption={
-              <span>
-                a) Depth uncertainty estimated with the presence of matching uncertainty.
-                b) Projecting depth and matching uncertainty on sensor plane to 3D space.
-                c) Residual <KatexSpan text="$\mathcal{L}_i$" /> for pose graph optimization.
-              </span>
-            }
-            isDark={mode === "dark"}
-            idx={2}
-          /> */}
+            img_src={SystemFig.src}
+            caption="By integrating the novel AirIO network and an uncertainty-aware IMU preintegration model into an EKF, we achieve robust odometry even under aggressive maneuvers."
+            isDark={mode !== 'dark'}
+            idx={4}
+            captionclr={mode === 'dark' ? 'text-gray-400' : 'text-gray-600'}
+          />
         </div>
       </section>
     </main >
