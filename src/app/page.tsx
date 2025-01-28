@@ -43,7 +43,9 @@ export default function HomePage() {
           <ExternalSwitch state={mode === "light"} switch_state={toggleMode} />
         </div>
         <div className='layout z-20 relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
-          <h1 className='mt-4 text-5xl'>Air-IO: Learning <span className={clsx([hlTextColor])}>I</span>nertial <span className={clsx([hlTextColor])}>O</span>dometry for Drone</h1>
+          <h1 className='mt-4 text-5xl'>
+            AirIO: Learning <span className={hlTextColor}>I</span>nertial <span className={hlTextColor}>O</span>dometry with<br/>Enhanced IMU Feature Observability
+          </h1>
           <div className='container py-6'>
             <span className='text-lg font-semibold'>
               Yuheng Qiu<span className="align-super text-xs leading-none">*1</span>, 
@@ -62,7 +64,7 @@ export default function HomePage() {
             <ArrowLink className='mt-6' href='https://github.com/Air-IO/Air-IO' variant={mode} size='large'>
               GitHub Repo
             </ArrowLink>
-            <ArrowLink className='mt-6' href='https://arxiv.org/abs/2409.09479' variant={mode} size='large'>
+            <ArrowLink className='mt-6' href='https://arxiv.org/abs/2501.15659' variant={mode} size='large'>
               arXiv Page
             </ArrowLink>
           </div>
