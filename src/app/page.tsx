@@ -8,16 +8,14 @@ import '@/lib/env';
 import useDarkMode from '@/lib/storage';
 
 import Figure from '@/components/Figure';
-import KatexSpan from '@/components/KaTeX';
 import ArrowLink from '@/components/links/ArrowLink';
 import RerunViewerInline from '@/components/RerunViewer/InlineViewer';
-import RerunViewerPopup from '@/components/RerunViewer/RerunViewer';
 import ExternalSwitch from '@/components/Switch';
 
 import BlackBirdGif from '~/images/blackbird_caption.gif';
 import EuRoCGif from '~/images/euroc_caption.gif';
 import PegasusGif from '~/images/pegasus_caption.gif';
-import SystemFig from '~/images/system_transparentbg.png';
+import SystemFig from '~/images/system_whitebg.png';
 
 
 export default function HomePage() {
@@ -156,7 +154,7 @@ export default function HomePage() {
         <div className='layout py-12'>
           <video autoPlay muted controls loop className="mx-auto z-0 rounded-lg">
             <source
-              src="/video/2_AirIO_insights.mov"
+              src="/video/website_insight.mov"
               type="video/mp4"
             />
             Your browser does not support the video tag.
