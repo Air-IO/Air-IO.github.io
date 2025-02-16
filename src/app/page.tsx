@@ -65,6 +65,9 @@ export default function HomePage() {
             <ArrowLink className='mt-6' href='https://arxiv.org/abs/2501.15659' variant={mode} size='large'>
               arXiv Page
             </ArrowLink>
+            <ArrowLink className='mt-6' href='https://air-io.github.io/supplements/supplements.pdf' variant={mode} size='large'>
+              Supplemental Materials
+            </ArrowLink>
           </div>
         </div>
         <div className={clsx("absolute w-auto min-w-full min-h-full max-w-none z-10 backdrop-blur-sm", maskColor)} />
