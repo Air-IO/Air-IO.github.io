@@ -141,7 +141,7 @@ export default function HomePage() {
           <p className='py-4 text-lg'>
           We identify the commonly used global-coordinate approach is suboptimal for UAVs due to their dynamic nature. Two simple steps to achieve significant gains: 
           <ol className='text-xl list-decimal ml-12 pt-2'>
-            <li className='pt-2 text-primary-500'>Predicting velocity using body-coordiante frame representation.</li>
+            <li className='pt-2 text-primary-500'>Predicting velocity using body-coordinate frame representation.</li>
             <li className='pt-2 text-primary-500'>Explicitly encoding UAV attitude information.</li>
           </ol>
           </p>
