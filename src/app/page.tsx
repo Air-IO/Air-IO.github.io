@@ -157,7 +157,7 @@ export default function HomePage() {
         <div className='layout py-12'>
           <video autoPlay muted controls loop className="mx-auto z-0 rounded-lg">
             <source
-              src="/video/website_insight.mov"
+              src="/video/website_insight.mp4"
               type="video/mp4"
             />
             Your browser does not support the video tag.
